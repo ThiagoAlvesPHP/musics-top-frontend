@@ -5,7 +5,8 @@ import { AuthLogin } from '@app/components/auth-login';
 import { ThemeBase } from '@containers/theme/base';
 
 import { Home } from '@views/home'
-import { Login } from '@app/views/login';
+import { Login } from '@views/login';
+import { Register } from '@views/register';
 
 export function Router() {
   return (
@@ -18,6 +19,14 @@ export function Router() {
             element={(
               <AuthLogin>
                 <Login />
+              </AuthLogin>
+            )} 
+          />
+          <Route 
+            path='/register' 
+            element={(
+              <AuthLogin>
+                <Register />
               </AuthLogin>
             )} 
           />
