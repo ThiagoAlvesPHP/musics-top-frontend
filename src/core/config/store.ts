@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { useSelector } from 'react-redux'
 
 import { appSlice } from '@slices/appSlice'
+import { userSlice } from '../slices/userSlice'
 
 export const store = configureStore({
   reducer: {
     app: appSlice.reducer,
+    user: userSlice.reducer,
   },
 })
 
