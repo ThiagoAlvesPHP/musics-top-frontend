@@ -1,7 +1,5 @@
 import { musicsTopApi } from "../musics-top-api";
 
-import { Pagination } from "../types";
-
 import errorHandling from "@app/core/utils/error-handling";
 
 export type Auth = {

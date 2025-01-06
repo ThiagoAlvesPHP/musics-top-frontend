@@ -30,7 +30,7 @@ export type User = {
 export const musics = {
   getAll: async () => {
     try {
-      const req = await musicsTopApi.get<Pagination<Music>>('/music?order=count_views,desc');
+      const req = await musicsTopApi.get<Pagination<Music>>('/music?order=count_views,desc&filter=status:=:approved');
       return req.data;
     } catch (err) {
       errorHandling(err);
