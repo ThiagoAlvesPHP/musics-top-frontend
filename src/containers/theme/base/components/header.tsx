@@ -2,18 +2,20 @@ import clsx from "clsx";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { FiMenu, FiMoon, FiSun, FiUser, FiX } from "react-icons/fi";
+import { FiLogOut, FiMenu, FiMoon, FiSun, FiUser, FiX } from "react-icons/fi";
 
 import { Switch } from "@components/switch";
 
 import { RootState } from "@app/core/config/store";
 
 import { changeMode } from "@app/core/slices/appSlice";
+import { logout } from "@app/core/slices/userSlice";
 
 export function Header() {
   const dispatch = useDispatch();
 
   const mode = useSelector<RootState>(state => state.app.mode);
+  const token = useSelector<RootState>(state => state.user.token) as string | null;
 
   const [ isMenu, setIsMenu ] = useState<boolean>(false);
 
@@ -34,12 +36,27 @@ export function Header() {
             })}
           >
             <ul className="max-sm:flex-col flex gap-3">
-              <li>
-                <Link to="login" className="max-sm:p-5 max-sm:bg-white dark:max-sm:bg-stone-950 max-sm:w-full flex gap-2 items-center text-base text-gray-500 dark:text-gray-300 transition-animation hover:text-gray-700 dark:hover:text-gray-100">
-                  <FiUser className="text-2xl" />
-                  Fazer Login
-                </Link>
-              </li>
+              {!token && (
+                <li>
+                  <Link to="login" className="max-sm:p-5 max-sm:bg-white dark:max-sm:bg-stone-950 max-sm:w-full flex gap-2 items-center text-base text-gray-500 dark:text-gray-300 transition-animation hover:text-gray-700 dark:hover:text-gray-100">
+                    <FiUser className="text-2xl" />
+                    Fazer Login
+                  </Link>
+                </li>
+              )}
+              {token && (
+                <li>
+                  <button 
+                    className="max-sm:p-5 max-sm:bg-white dark:max-sm:bg-stone-950 max-sm:w-full flex gap-2 items-center text-base text-gray-500 dark:text-gray-300 transition-animation hover:text-gray-700 dark:hover:text-gray-100"
+                    onClick={() => {
+                      dispatch(logout());
+                    }}
+                  >
+                    <FiLogOut className="text-2xl" />
+                    Sair
+                  </button>
+                </li>
+              )}
             </ul>
           </nav>
 

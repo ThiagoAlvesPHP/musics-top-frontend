@@ -25,6 +25,7 @@ export function HomeRanking({ musics }: Props) {
                 title={music.title.length > 40 ? music.title.substring(0, 40) + '...' : music.title}
                 views={formatViews(music.count_views)}
                 image={music.thumb}
+                key={music.id}
               />
             ))
           : (

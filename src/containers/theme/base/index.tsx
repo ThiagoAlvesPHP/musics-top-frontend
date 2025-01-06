@@ -6,7 +6,7 @@ export function ThemeBase() {
   return (
     <div className="min-h-screen bg-stone-100 dark:bg-stone-900 shadow-sm">
       <Header />
-      <main className="inside-container pt-16 max-sm:pt-24">
+      <main className="inside-container pt-16 max-sm:pt-24 min-h-screen flex flex-col">
         <Outlet />
       </main>
     </div>

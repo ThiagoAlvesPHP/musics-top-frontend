@@ -1,7 +1,8 @@
 import { musicsTopApi } from "../musics-top-api";
 
-import errorHandling from "@app/core/utils/error-handling";
 import { Pagination } from "../types";
+
+import errorHandling from "@app/core/utils/error-handling";
 
 export type Music = {
   id: number;

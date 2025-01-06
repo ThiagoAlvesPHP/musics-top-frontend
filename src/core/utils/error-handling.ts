@@ -3,8 +3,6 @@ import { toast } from "react-toastify";
 
 export default function errorHandling(err: any) {
   if (axios.isAxiosError(err)) {
-    toast.error('Error: ' + err.message);
-
     if (err.response) {
       console.error('Erro na resposta da API:', {
         status: err.response.status,
@@ -15,10 +13,11 @@ export default function errorHandling(err: any) {
     } else {
       console.error('Erro ao fazer a requisição:', err.message);
     }
+
+    return err;
   } else {
-    toast.error('Error: ' + err);
-    
     // Erro não relacionado ao Axios
     console.error('Erro inesperado:', err);
+    return null;
   }
 }
