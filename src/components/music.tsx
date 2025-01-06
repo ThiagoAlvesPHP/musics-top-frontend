@@ -17,7 +17,7 @@ export function Music({ to, index, title, views, image }: Props) {
         </div>
       }
 
-      <div className='flex-1'>
+      <div className='flex-1 py-2'>
         <p className='text-lg font-medium text-first'>
           {title}
         </p>

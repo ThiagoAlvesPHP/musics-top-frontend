@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 import { Router } from '@config/router';
 import { RootState } from '@config/store';
@@ -8,6 +9,7 @@ export function App() {
   return (
     <div className={`${mode}`}>
       <Router />
+      <ToastContainer />
     </div>
   );
 }
