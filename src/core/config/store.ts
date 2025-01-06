@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { appSlice } from '../slices/AppSlice'
 import { useSelector } from 'react-redux'
+
+import { appSlice } from '@slices/appSlice'
 
 export const store = configureStore({
   reducer: {

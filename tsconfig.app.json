@@ -20,7 +20,17 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@containers/*": ["./src/containers/*"],
+      "@config/*": ["./src/core/config/*"],
+      "@slices/*": ["./src/core/slices/*"],
+      "@views/*": ["./src/views/*"]
+    }
   },
   "include": ["src"]
 }

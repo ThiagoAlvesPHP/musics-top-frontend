@@ -4,9 +4,9 @@ import { Header } from "./components/header";
 
 export function ThemeBase() {
   return (
-    <div className="">
+    <div className="min-h-screen bg-white dark:bg-stone-900">
       <Header />
-      <main className="">
+      <main className="pt-16 max-sm:pt-24">
         <h1>Theme Base</h1>
         <Outlet />
       </main>

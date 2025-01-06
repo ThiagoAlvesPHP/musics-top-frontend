@@ -2,8 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 
-import { store } from './core/config/store'
-import { changeScreen, changeScrollTop } from './core/slices/AppSlice'
+import { store } from '@config/store'
+import { changeScreen, changeScrollTop } from '@slices/AppSlice'
 
 import { App } from './app'
 

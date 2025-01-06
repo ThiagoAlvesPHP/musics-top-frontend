@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { Home } from '../../views/home'
-import { ThemeBase } from '../../containers/theme/base';
+import { Home } from '@views/home'
+import { ThemeBase } from '@containers/theme/base';
 
 export function Router() {
   return (

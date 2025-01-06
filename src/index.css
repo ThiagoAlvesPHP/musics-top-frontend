@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .transition-animation {
+    @apply transition-all duration-[0.8s] ease-in-out;
+  }
+}
