@@ -18,8 +18,8 @@ export function Header() {
   const [ isMenu, setIsMenu ] = useState<boolean>(false);
 
   return (
-    <header className="w-full py-5 shadow-md bg-white dark:bg-stone-950 dark:shadow-none fixed">
-      <div className="max-w-screen-xl w-full px-5 mx-auto flex justify-between items-center gap-10">
+    <header className="w-full py-5 bg-white dark:bg-stone-950 dark:shadow-none fixed">
+      <div className="inside-container flex justify-between items-center gap-10">
         <div>
           <Link to="/">
             <h1 className="text-lg font-medium text-gray-900 dark:text-white">Musics<span className="text-first">Top</span></h1>

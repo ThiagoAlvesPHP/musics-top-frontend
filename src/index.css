@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+  .inside-container {
+    @apply max-w-screen-xl w-full px-5 mx-auto;
+  }
+
   .transition-animation {
     @apply transition-all duration-[0.8s] ease-in-out;
   }

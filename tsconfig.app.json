@@ -25,6 +25,7 @@
     "baseUrl": ".",
     "paths": {
       "@app/*": ["./src/*"],
+      "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],
       "@containers/*": ["./src/containers/*"],
       "@config/*": ["./src/core/config/*"],
