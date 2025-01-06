@@ -23,4 +23,17 @@ export const auth = {
       return errorHandling(err);
     }
   },
+  register: async (name: string, email: string, password: string) => {
+    try {
+      const req = await musicsTopApi.post<Auth>('/user', {
+        name,
+        email,
+        password,
+      });
+
+      return req.data;
+    } catch (err) {
+      return errorHandling(err);
+    }
+  }
 }

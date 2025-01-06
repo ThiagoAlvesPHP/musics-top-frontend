@@ -1,12 +1,19 @@
 import { FormEvent, useState } from 'react'
+import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { FiEye, FiEyeOff, FiUserPlus } from 'react-icons/fi';
 
 import { Box } from '@app/components/box'
 import { Input } from '@app/components/input';
 import { Button } from '@app/components/button';
 
+import { auth } from '@app/core/services/musics-top/auth';
+import { changeToken } from '@app/core/slices/userSlice';
+
 export function Register() {
+  const dispatch = useDispatch();
+
   const [ name, setName ] = useState<string>('');
   const [ nameError, setNameError ] = useState<string>('');
   const [ email, setEmail ] = useState<string>('');
@@ -17,6 +24,27 @@ export function Register() {
 
   const send = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    clearErrors();
+
+    const req = await auth.register(name, email, password);
+
+    if (axios.isAxiosError(req)) {
+      if (req.response?.data.errors.name) setNameError(req.response.data.errors.name[0]);
+      if (req.response?.data.errors.email) setEmailError(req.response.data.errors.email[0]);
+      if (req.response?.data.errors.password) setPasswordError(req.response.data.errors.password[0]);
+      return;
+    }
+
+    if (req) {
+      dispatch(changeToken(req.access_token));
+    }
+  }
+
+  const clearErrors = () => {
+    setNameError('');
+    setEmailError('');
+    setPasswordError('');
   }
 
   const IconRight = () => (

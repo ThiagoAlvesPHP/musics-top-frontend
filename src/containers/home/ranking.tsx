@@ -29,7 +29,7 @@ export function HomeRanking({ musics }: Props) {
               />
             ))
           : (
-              <p className="">
+              <p className="text-sm text-gray-800 dark:text-gray-200">
                 Nenhum vídeo foi sugerido!
               </p>
             )
