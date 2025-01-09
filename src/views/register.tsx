@@ -21,9 +21,11 @@ export function Register() {
   const [ password, setPassword ] = useState<string>('');
   const [ passwordError, setPasswordError ] = useState<string>('');
   const [ isVisiblePassword, setIsVisiblePassword ] = useState<boolean>(false);
+  const [ isLoading, setIsLoading ] = useState<boolean>(false);
 
   const send = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsLoading(true);
 
     clearErrors();
 
@@ -33,12 +35,15 @@ export function Register() {
       if (req.response?.data.errors.name) setNameError(req.response.data.errors.name[0]);
       if (req.response?.data.errors.email) setEmailError(req.response.data.errors.email[0]);
       if (req.response?.data.errors.password) setPasswordError(req.response.data.errors.password[0]);
+      setIsLoading(false);
       return;
     }
 
     if (req) {
       dispatch(changeToken(req.access_token));
     }
+
+    setIsLoading(false);
   }
 
   const clearErrors = () => {
@@ -109,7 +114,7 @@ export function Register() {
             />
           </div>
 
-          <Button className='w-full mb-5'>
+          <Button className='w-full mb-5' isLoading={isLoading}>
             <p className='font-medium text-gray-800 dark:text-gray-200'>Cadastrar-se</p>
           </Button>
 

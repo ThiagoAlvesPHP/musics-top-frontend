@@ -10,8 +10,9 @@ export type Props = {
 
 export function AuthLogin({ children }: Props) {
   const token = useSelector<RootState>(state => state.user.token);
+  const user = useSelector<RootState>(state => state.user.data);
 
-  if (token) return <Navigate to='/' />
+  if (token && user) return <Navigate to='/' />
 
   return children;
 }

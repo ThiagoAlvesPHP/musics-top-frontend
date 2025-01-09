@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import { FormEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { FiEye, FiEyeOff, FiLock } from 'react-icons/fi'
@@ -9,9 +10,9 @@ import { Input } from '@app/components/input'
 
 import { auth } from '@app/core/services/musics-top/auth'
 import { changeToken } from '@app/core/slices/userSlice'
-import { Link } from 'react-router-dom'
 
 export function Login() {
+
   const dispatch = useDispatch();
 
   const [ email, setEmail ] = useState<string>('');
@@ -19,9 +20,11 @@ export function Login() {
   const [ password, setPassword ] = useState<string>('');
   const [ passwordError, setPasswordError ] = useState<string>('');
   const [ isVisiblePassword, setIsVisiblePassword ] = useState<boolean>(false);
+  const [ isLoading, setIsLoading ] = useState<boolean>(false);
 
   const send = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsLoading(true);
 
     clearErrors();
 
@@ -30,12 +33,15 @@ export function Login() {
     if (axios.isAxiosError(req)) {
       if (req.response?.data.errors.email) setEmailError(req.response.data.errors.email[0]);
       if (req.response?.data.errors.password) setPasswordError(req.response.data.errors.password[0]);
+      setIsLoading(false);
       return;
     }
 
     if (req) {
       dispatch(changeToken(req.access_token));
     }
+    
+    setIsLoading(false);
   }
 
   const clearErrors = () => {
@@ -94,7 +100,7 @@ export function Login() {
             />
           </div>
 
-          <Button className='w-full mb-5'>
+          <Button className='w-full mb-5' isLoading={isLoading}>
             <p className='font-medium text-gray-800 dark:text-gray-200'>Logar-se</p>
           </Button>
 

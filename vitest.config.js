@@ -1,14 +1,11 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
 import * as path from 'path'
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  server: {
-    host: true,
-    strictPort: true,
-    port: 8080,
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: "./vitest-setup.js",
   },
   resolve: {
     alias: [
@@ -42,4 +39,4 @@ export default defineConfig({
       },
     ],
   },
-})
+});

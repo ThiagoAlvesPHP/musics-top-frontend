@@ -8,6 +8,8 @@ import { Switch } from "@components/switch";
 
 import { RootState } from "@app/core/config/store";
 
+import { User } from "@app/core/services/musics-top/auth";
+
 import { changeMode } from "@app/core/slices/appSlice";
 import { logout } from "@app/core/slices/userSlice";
 
@@ -16,6 +18,7 @@ export function Header() {
 
   const mode = useSelector<RootState>(state => state.app.mode);
   const token = useSelector<RootState>(state => state.user.token) as string | null;
+  const user = useSelector<RootState>(state => state.user.data) as User | null;
 
   const [ isMenu, setIsMenu ] = useState<boolean>(false);
 
@@ -30,13 +33,13 @@ export function Header() {
 
         <div className="flex gap-5 items-center">
           <nav 
-            className={clsx('max-sm:absolute max-sm:top-full max-sm:left-0 max-sm:w-full max-sm:border-t-2 max-sm:border-gray-700 dark:max-sm:border-gray-300 transition-animation', {
+            className={clsx('max-sm:absolute max-sm:top-full max-sm:left-0 max-sm:w-full border-top-header transition-animation', {
               'max-sm:opacity-0 max-sm:pointer-events-none': !isMenu,
               'max-sm:opacity-1 max-sm:pointer-events-auto': isMenu,
             })}
           >
-            <ul className="max-sm:flex-col flex gap-3">
-              {!token && (
+            <ul className="max-sm:flex-col max-sm:gap-0 flex gap-3">
+              {(!token && !user) && (
                 <li>
                   <Link to="login" className="max-sm:p-5 max-sm:bg-white dark:max-sm:bg-stone-950 max-sm:w-full flex gap-2 items-center text-base text-gray-500 dark:text-gray-300 transition-animation hover:text-gray-700 dark:hover:text-gray-100">
                     <FiUser className="text-2xl" />
@@ -44,18 +47,26 @@ export function Header() {
                   </Link>
                 </li>
               )}
-              {token && (
-                <li>
-                  <button 
-                    className="max-sm:p-5 max-sm:bg-white dark:max-sm:bg-stone-950 max-sm:w-full flex gap-2 items-center text-base text-gray-500 dark:text-gray-300 transition-animation hover:text-gray-700 dark:hover:text-gray-100"
-                    onClick={() => {
-                      dispatch(logout());
-                    }}
-                  >
-                    <FiLogOut className="text-2xl" />
-                    Sair
-                  </button>
-                </li>
+              {(token && user) && (
+                <>
+                  <li>
+                    <p className="max-sm:p-5 max-sm:bg-white dark:max-sm:bg-stone-950 max-sm:w-full flex gap-2 items-center text-base text-gray-500 dark:text-gray-300 transition-animation hover:text-gray-700 dark:hover:text-gray-100">
+                      <FiUser className="text-2xl" />
+                      Seja Bem-vindo, {user?.name}
+                    </p>
+                  </li>
+                  <li className="border-top-header">
+                    <button 
+                      className="max-sm:p-5 max-sm:bg-white dark:max-sm:bg-stone-950 max-sm:w-full flex gap-2 items-center text-base text-gray-500 dark:text-gray-300 transition-animation hover:text-gray-700 dark:hover:text-gray-100"
+                      onClick={() => {
+                        dispatch(logout());
+                      }}
+                    >
+                      <FiLogOut className="text-2xl" />
+                      Sair
+                    </button>
+                  </li>
+                </>
               )}
             </ul>
           </nav>

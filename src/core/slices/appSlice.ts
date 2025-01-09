@@ -14,14 +14,24 @@ export type AppState = {
   screen: AppScreen;
 }
 
-const DEFAULT_STORAGE_NAME = '@app:musics_top:mode'
+export const DEFAULT_STORAGE_NAME = '@app:musics_top:mode'
 
-const isValidAppMode = (value: any): value is AppMode => value !== 'light' ||  value !== 'dark'
+export const isValidAppMode = (value: any): value is AppMode => value !== 'light' ||  value !== 'dark'
 
-const storedMode = localStorage.getItem(DEFAULT_STORAGE_NAME);
+export const parseStoredAppMode = (value: string | null): AppMode => {
+  if (!value) return 'light';
+
+  try {
+    return isValidAppMode(value) ? value : 'light';
+  } catch {
+    return 'light';
+  }
+};
+
+const storedMode = parseStoredAppMode(localStorage.getItem(DEFAULT_STORAGE_NAME));
 
 const initialState: AppState = {
-  mode: isValidAppMode(storedMode) ? storedMode : 'light',
+  mode: storedMode,
   scrollTop: 0,
   screen: {
     width: 0,

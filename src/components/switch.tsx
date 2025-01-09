@@ -10,12 +10,12 @@ export function Switch({ checked, onChecked }: Props) {
     <button 
       className={clsx('w-12 h-6 rounded-full transition-animation', {
         'bg-gray-100': !checked,
-        'bg-blue-300': checked,
+        'bg-blue-500': checked,
       })}
       onClick={onChecked}
     >
       <span 
-        className={clsx('w-6 h-6 bg-white block rounded-full scale-110 shadow-lg transition-animation', {
+        className={clsx('w-6 h-6 bg-stone-900 dark:bg-white block rounded-full scale-110 shadow-lg transition-animation', {
           'translate-x-full': checked,
         })} 
       />

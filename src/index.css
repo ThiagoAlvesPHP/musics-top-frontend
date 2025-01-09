@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+.loader {
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+
 @layer components {
   .inside-container {
     @apply max-w-screen-xl w-full px-5 mx-auto;
@@ -9,5 +25,17 @@
 
   .transition-animation {
     @apply transition-all duration-[0.8s] ease-in-out;
+  }
+
+  .btn-pagination {
+    @apply w-10 h-10 border-2 flex justify-center items-center border-stone-200 dark:border-stone-800 text-gray-800 dark:text-gray-200 hover:border-blue-500 hover:text-blue-500 transition-animation;
+  }
+
+  .border-top-header {
+    @apply max-sm:border-t-2 max-sm:border-gray-700 dark:max-sm:border-gray-300;
+  }
+
+  .title-box {
+    @apply text-base font-medium text-first mb-3;
   }
 }
