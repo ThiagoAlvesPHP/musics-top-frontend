@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { FormEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { FiEye, FiEyeOff, FiLock } from 'react-icons/fi'
+import { toast } from 'react-toastify'
 
 import { Box } from '@app/components/box'
 import { Button } from '@app/components/button'
@@ -30,9 +31,13 @@ export function Login() {
 
     const req = await auth.login(email, password);
 
-    if (axios.isAxiosError(req)) {
-      if (req.response?.data.errors.email) setEmailError(req.response.data.errors.email[0]);
-      if (req.response?.data.errors.password) setPasswordError(req.response.data.errors.password[0]);
+    if (axios.isAxiosError(req) && req.response.data) {
+      const data = req.response.data;
+
+      if (data.errors && data.errors.email) setEmailError(req.response.data.errors.email[0]);
+      if (data.errors  && data.errors.password) setPasswordError(req.response.data.errors.password[0]);
+      if (data.error) toast.error(data.error);
+
       setIsLoading(false);
       return;
     }

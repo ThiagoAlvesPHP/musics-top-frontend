@@ -1,50 +1,39 @@
-# React + TypeScript + Vite
+# Musics Top
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Referência
+[Projeto - GitHub](https://github.com/jansenfelipe/top5-tiao-carreiro)
 
-Currently, two official plugins are available:
+## Tecnologias
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+O projeto utiliza as seguintes tecnologias:
 
-## Expanding the ESLint configuration
+* React
+* TailwindCSS
+* Redux
+* Docker
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Serviços Usados
 
-- Configure the top-level `parserOptions` property like this:
+Consulta se a URL do Youtube era valida e captura dos dados do vídeo do Youtube.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Para Iniciar
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+* Ambiente:
+    - É necessário que o Docker esteja instalado no ambiente para facilitar a instalação e execução.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+* Instalação:
+    - Execute o comando abaixo para iniciar os serviços `docker compose up` ou para executar sem visualizar os logs no terminal, utilize `docker compose up -d`
+    - Caso a API esteja configurada em outro URL, atualize o arquivo `src/core/services/musics-top-api.ts` e altere a URL base para o endereço correto.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+* Uso:
+    - Após a instalação, acesse o projeto pelo seguinte endereço: [http://localhost:8080](http://localhost:8080)
+
+* Observações
+    - Certifique-se de que as portas configuradas no arquivo `docker-compose.yml` estejam disponíveis antes de executar o comando. Conflitos de portas podem gerar erros durante a inicialização.
+
+### Rotas
+
+![Rota de Login](https://github.com/ThiagoAlvesPHP/musics-top-frontend/blob/main/readme/login.png)
+![Rota de Registro de Usuário](https://github.com/ThiagoAlvesPHP/musics-top-frontend/blob/main/readme/register.png)
+![Rota de Registro da Música](https://github.com/ThiagoAlvesPHP/musics-top-frontend/blob/main/readme/home.png)
+![Rota de Listar as Músicas](https://github.com/ThiagoAlvesPHP/musics-top-frontend/blob/main/readme/home_logged.png)
