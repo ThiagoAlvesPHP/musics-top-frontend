@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" # Mapeie a porta do contêiner para a máquina local
+    volumes:
+      - .:/app       # Sincronize o código local com o contêiner
+      - /app/node_modules # Evite conflitos de dependências
+    stdin_open: true
+    tty: true

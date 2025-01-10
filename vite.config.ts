@@ -9,6 +9,10 @@ export default defineConfig({
     host: true,
     strictPort: true,
     port: 8080,
+    watch: {
+      usePolling: true, // Ativa o polling
+      interval: 100,    // Define o intervalo de polling (opcional, ajuste conforme necessário)
+    },
   },
   resolve: {
     alias: [

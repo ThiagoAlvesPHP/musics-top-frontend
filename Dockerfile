@@ -1,6 +1,7 @@
 FROM node:22.12-alpine
 WORKDIR /app
-COPY package.json .
+COPY package*.json ./
 RUN npm i
 COPY . .
-CMD [ "npm", "run", "dev" ]
+EXPOSE 8080
+CMD ["npm", "run", "dev"]
